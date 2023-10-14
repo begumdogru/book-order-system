@@ -73,15 +73,3 @@ These are optional but recommended features to enhance the system:
 
 ### Open API Specification
 - Implement an OpenAPI specification (Swagger) for easy API documentation.
-
-## How to Submit
-
-You can submit your project in the following ways:
-
-1. **GitHub/Bitbucket**: Share the project on your GitHub or Bitbucket account and provide us with the link. Using version control is a bonus.
-
-2. **Cloud File Sharing**: Share the project via a cloud file-sharing platform like Google Drive. If you want to restrict access, please specify in the response email.
-
-3. **Getir Github Repository**: If you prefer, we can create a private repository in Getir's GitHub account and grant you access. To achieve this, we'll need your GitHub account.
-
-Thank you for your effort and dedication to the ReadingIsGood project. We look forward to seeing your implementation. If you have any questions or need assistance, please don't hesitate to contact us. Good luck!

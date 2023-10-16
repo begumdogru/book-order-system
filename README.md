@@ -1,7 +1,5 @@
 # ReadingIsGood - Online Book Retail System
 
-![ReadingIsGood Logo](https://example.com/readingisgood_logo.png)
-
 ReadingIsGood is an online book retail firm that operates exclusively on the Internet. Our main goal is to deliver books from our centralized warehouse to our customers within the same day. Stock consistency is our top priority, ensuring that customers always find the books they want in stock.
 
 ## Table of Contents

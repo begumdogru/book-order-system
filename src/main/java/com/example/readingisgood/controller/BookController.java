@@ -66,5 +66,4 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insufficient stock for the book.");
         }
     }
-
 }

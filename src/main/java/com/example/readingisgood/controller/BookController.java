@@ -1,7 +1,10 @@
 package com.example.readingisgood.controller;
 
+import com.example.readingisgood.exception.InsufficientStockException;
+import com.example.readingisgood.exception.ProductNotFoundException;
 import com.example.readingisgood.model.Book;
 import com.example.readingisgood.service.BookService;
+import com.example.readingisgood.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +22,12 @@ import java.util.Optional;
 @RequestMapping("/books")
 public class BookController {
     private final BookService bookService;
+    private final OrderService orderService;
 
     @Autowired
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, OrderService orderService) {
         this.bookService = bookService;
+        this.orderService = orderService;
     }
 
     //get all books
@@ -48,6 +53,18 @@ public class BookController {
     public ResponseEntity<Book> updateBook(@PathVariable Long bookId, @RequestBody Book updatedBook){
         Book updated = bookService.updateBook(bookId,updatedBook);
         return new ResponseEntity<>(updated,HttpStatus.OK);
+    }
+    @PostMapping("/{bookId}/purchase")
+    public ResponseEntity<String> purchaseLastBook(@PathVariable Long bookId) {
+        try {
+            Optional<Book> book = bookService.findBookById(bookId);
+            orderService.purchaseLastBook(book);
+            return ResponseEntity.ok("Book purchased successfully.");
+        } catch (ProductNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (InsufficientStockException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insufficient stock for the book.");
+        }
     }
 
 }

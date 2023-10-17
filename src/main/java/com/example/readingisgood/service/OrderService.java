@@ -1,0 +1,65 @@
+package com.example.readingisgood.service;
+
+import com.example.readingisgood.exception.InsufficientStockException;
+import com.example.readingisgood.exception.ProductNotFoundException;
+import com.example.readingisgood.model.Book;
+import com.example.readingisgood.model.Order;
+import com.example.readingisgood.model.OrderItem;
+import com.example.readingisgood.repository.BookRepository;
+import com.example.readingisgood.repository.OrderRepository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+public class OrderService {
+    private final OrderRepository orderRepository;
+    private final BookRepository bookRepository;
+
+    public OrderService(OrderRepository orderRepository, BookRepository bookRepository) {
+        this.orderRepository = orderRepository;
+        this.bookRepository = bookRepository;
+    }
+
+    //Persist new order
+    public Order addOrder(Order order) {
+        order.setOrderStatus("Pending");
+        order.setOrderDate(new Date());
+        return orderRepository.save(order);
+    }
+
+    @Transactional
+    public void updateStock(Order order){
+        List<OrderItem> orderItems = order.getOrderItems();
+        for(OrderItem orderItem: orderItems){
+            Book book = orderItem.getBook();
+            int quantityOrdered = orderItem.getQuantity();
+            int currentStock = book.getStockQuantity();
+
+            if(currentStock >= quantityOrdered){
+                book.setStockQuantity(currentStock - quantityOrdered);
+                bookRepository.save(book);
+            }else{
+                throw new InsufficientStockException("Insufficient stock for book ID: " + book.getId());
+
+            }
+        }
+    }
+    @Transactional
+    public void purchaseLastBook(Optional<Book> book) {
+        if(book.isPresent()){
+            Book actualBook = book.get();
+            int currentStock = actualBook.getStockQuantity();
+            if (currentStock > 0) {
+                actualBook.setStockQuantity(currentStock - 1);
+                bookRepository.save(actualBook);
+            } else {
+                throw new InsufficientStockException("The book is out of stock.");
+            }
+        }else{
+            throw new ProductNotFoundException("Book not found.");
+        }
+
+    }
+}

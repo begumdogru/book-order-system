@@ -21,7 +21,14 @@ public class OrderService {
         this.orderRepository = orderRepository;
         this.bookRepository = bookRepository;
     }
-
+    //Query orders by ID
+    public Optional<Order> getOrderById(Long orderId){
+        return orderRepository.findById(orderId);
+    }
+    //List orders by date interval
+    public List<Order> getOrdersByDateInterval(Date startDate, Date endDate){
+        return orderRepository.findByDateInterval(startDate,endDate);
+    }
     //Persist new order
     public Order addOrder(Order order) {
         order.setOrderStatus("Pending");
@@ -60,6 +67,5 @@ public class OrderService {
         }else{
             throw new ProductNotFoundException("Book not found.");
         }
-
     }
 }

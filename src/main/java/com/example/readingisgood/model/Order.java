@@ -71,5 +71,12 @@ public class Order {
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
+
+    public double getTotalAmount() {
+        return orderItems.stream()
+                .mapToDouble(orderItem -> orderItem.getTotalPrice())
+                .sum();
+    }
+
 }
 

@@ -118,4 +118,7 @@ public class Book {
     public void setCoverImageUrl(String coverImageUrl) {
         this.coverImageUrl = coverImageUrl;
     }
+    public double getTotalAmount() {
+        return price * stockQuantity;
+    }
 }

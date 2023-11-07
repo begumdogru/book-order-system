@@ -5,8 +5,6 @@ ReadingIsGood is an online book retail firm that operates exclusively on the Int
 ## Table of Contents
 - [Base Requirements](#base-requirements)
 - [Must-Have Requirements](#must-have-requirements)
-- [Nice to Have's](#nice-to-haves)
-- [How to Submit](#how-to-submit)
 
 ## Base Requirements
 
@@ -17,9 +15,7 @@ To run the ReadingIsGood system, you must have the following technologies and co
 - **Database**: You can use either a relational database (H2 is an option) or a non-relational database.
 - **Restful Endpoints**: Implement RESTful API endpoints.
 - **Clean Code**: Ensure clean and maintainable code.
-- **Testing**: Provide unit and integration tests with at least 50% functionality coverage.
 - **Documentation**: Include brief design documentation, tech stack details, and instructions on how to start the project. If necessary, provide credentials and highlight any assumptions.
-- **Containerization**: Containerize the application using a tool like Docker.
 
 ## Must-Have Requirements
 
@@ -53,21 +49,10 @@ The statistics endpoint will supply data for UI components displaying monthly st
 ### Validations
 - Ensure the system is error-proof with appropriate validations.
 
-### Authentication
-- Secure endpoints, for example, using bearer tokens.
-
 ### Responses
 - Define success and error response models and use them consistently.
-
-### Postman
-- Prepare Postman requests and share them to facilitate testing.
-
-## Nice to Have's
-
-These are optional but recommended features to enhance the system:
 
 ### Logging
 - Log all changes on entities, including which user made specific changes and when.
 
-### Open API Specification
-- Implement an OpenAPI specification (Swagger) for easy API documentation.
+📚📖 Happy Reading Books! 📖📚

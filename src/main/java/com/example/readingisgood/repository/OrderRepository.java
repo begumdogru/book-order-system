@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order,Long> {
     Page<Order> findByCustomer_Id(Long customerId, Pageable pageable);
-    List<Order> findByDateInterval(Date startDate, Date endDate);
+    List<Order> findByOrderDateBetween(Date startDate, Date endDate);
+    List<Order> findByYearAndMonth(int year, int month);
 
 }
